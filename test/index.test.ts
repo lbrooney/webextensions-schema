@@ -1,17 +1,17 @@
-import assert from 'assert';
-import webExtensionsSchema from '../src';
+import { it, describe } from 'vitest';
+import webExtensionsSchema from '../src/index.js';
 
 describe('WebExtensionsSchema', () => {
-  it('should provide the raw schema', async () => {
+  it('should provide the raw schema', async ({ expect }) => {
     const schema = await webExtensionsSchema();
     const privacy = schema.raw()['privacy.json'];
-    assert(Array.isArray(privacy));
+    expect(Array.isArray(privacy)).toBe(true);
   });
 
-  it('should provide the schema namespaces', async () => {
+  it('should provide the schema namespaces', async ({ expect }) => {
     const schema = await webExtensionsSchema();
     const { privacy, manifest } = schema.namespaces();
-    assert(privacy[0].namespace === 'privacy');
-    assert(Array.isArray(manifest[0].types));
+    expect(privacy[0].namespace).toBe('privacy');
+    expect(Array.isArray(manifest[0].types)).toBe(true);
   });
 });

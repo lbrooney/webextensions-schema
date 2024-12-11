@@ -1,6 +1,7 @@
 {
   "name": "webextensions-schema",
-  "version": "0.5.1",
+  "version": "0.6.0",
+  "type": "module",
   "description": "Programmatically consume the WebExtensions Schema JSON files",
   "main": "dist/index.js",
   "repository": {
@@ -8,11 +9,12 @@
     "url": "git+https://github.com/stoically/webextensions-schema.git"
   },
   "scripts": {
-    "build": "npm-run-all lint test build:tsc",
-    "build:tsc": "tsc -p tsconfig.build.json",
-    "watch": "tsc --watch",
+    "build": "tsc -p tsconfig.build.json",
+    "build:ci": "pnpm run lint && prettier . --check && vitest run && pnpm run build",
+    "format": "prettier . --write",
     "lint": "eslint '{src,test}'/**/*.ts",
-    "test": "ts-mocha --timeout 30000"
+    "test": "vitest",
+    "watch": "tsc --watch"
   },
   "keywords": [
     "webextensions",
@@ -25,37 +27,35 @@
   },
   "license": "MPL-2.0",
   "files": [
-    "dist",
-    "downloads",
-    ".schemas"
+    "dist"
   ],
   "types": "dist",
   "devDependencies": {
-    "@types/mocha": "^5.2.7",
-    "@types/request": "^2.48.3",
-    "@types/unzipper": "^0.10.1",
-    "@typescript-eslint/eslint-plugin": "^2.7.0",
-    "@typescript-eslint/parser": "^2.7.0",
-    "eslint": "^6.6.0",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "mocha": "^6.2.2",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^1.19.1",
-    "ts-mocha": "^6.0.0",
-    "typescript": "^3.7.2"
+    "@eslint/js": "^9.16.0",
+    "@types/node": "^22.10.1",
+    "@types/unzipper": "^0.10.10",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "3.4.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "vitest": "^2.1.8"
   },
   "dependencies": {
-    "request": "^2.88.0",
-    "strip-json-comments": "^3.0.1",
-    "unzipper": "^0.10.5"
+    "strip-json-comments": "^5.0.1",
+    "unzipper": "^0.12.3"
   },
   "prettier": {
-    "trailingComma": "es5",
+    "trailingComma": "all",
     "tabWidth": 2,
     "singleQuote": true
   },
   "engines": {
-    "node": ">=10.0.0"
-  }
+    "node": ">=22.0.0",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
 }

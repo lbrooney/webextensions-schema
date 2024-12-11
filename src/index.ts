@@ -3,8 +3,8 @@ import {
   Schema,
   SchemaRaw,
   SchemaNamespaces,
-} from './types';
-import { DownloadParse } from './download-parse';
+} from './types.js';
+import { DownloadParse } from './download-parse.js';
 
 export class WebExtensionsSchema {
   private _schemas: Schema;
@@ -29,7 +29,7 @@ export class WebExtensionsSchema {
 }
 
 const webExtensionsSchema = async (
-  options: WebExtensionsSchemaOptions = {}
+  options: WebExtensionsSchemaOptions = {},
 ): Promise<WebExtensionsSchema> => {
   const downloadParse = await new DownloadParse(options).run();
   const schemas = downloadParse.getSchemas();
@@ -38,4 +38,4 @@ const webExtensionsSchema = async (
 };
 
 export default webExtensionsSchema;
-export * from './types';
+export * from './types.js';
