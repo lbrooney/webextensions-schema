@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
+    "target": "es2023",
+    "module": "nodenext",
     "strict": true,
     "esModuleInterop": true,
     "noEmit": true
